@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; img-src 'self' blob: data:; font-src 'self'; connect-src blob: data:; worker-src 'self' blob:; media-src blob:; object-src 'none'; frame-src 'none'; form-action 'none'; base-uri 'none'; webrtc 'block'">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="Free, single-purpose tools from Optimatech Labs that run entirely in your browser.">
+<title>Optimatech Labs Toolbox</title>
+<link rel="stylesheet" href="shell/tool.css">
+</head>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <a class="wordmark" href="./">Optimatech Labs <span>Toolbox</span></a>
+    <nav class="nav" aria-label="Toolbox">
+      <a href="./" aria-current="page">All tools</a>
+      <a href="verify/">Check it yourself</a>
+      <a href="https://optimatechlabs.com/">optimatechlabs.com</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="intro">
+    <div class="stamps"><span class="stamp">In your browser</span><span class="stamp muted">No account needed</span></div>
+    <h1>Free tools. Use them.</h1>
+    <p class="lede">Small, single-purpose tools that run in your browser. Nothing you drop in is sent anywhere, and your browser is the one enforcing that. <a href="verify/">Here is how to check.</a></p>
+  </div>
+  <section class="section">
+    <h2>Available now</h2>
+    <ul class="files">
+      <li class="file">
+        <div class="file-head"><span class="file-name"><a href="evidence-hash/">Evidence hash</a></span><span class="stamps"><span class="stamp">In your browser</span><span class="stamp muted">1.0.0</span></span></div>
+        <p class="note">Drop any file, any size. Get its SHA-256, SHA-1 or MD5, and a receipt to attach to your report. Chain of custody for screenshots and exports.</p>
+      </li>
+    </ul>
+  </section>
+  <section class="section">
+    <h2>On the bench</h2>
+    <ul class="files">
+      <li class="file"><div class="file-head"><span class="file-name">Metadata scrubber</span><span class="stamp muted">Coming</span></div><p class="note">See what's hiding inside photos, PDFs and Office files, and strip it before the file leaves the building.</p></li>
+      <li class="file"><div class="file-head"><span class="file-name">Spreadsheet pseudonymizer</span><span class="stamp muted">Coming</span></div><p class="note">Pick the sensitive columns in a CSV. Get consistent pseudonyms keyed to a passphrase only you hold.</p></li>
+      <li class="file"><div class="file-head"><span class="file-name">Redactor</span><span class="stamp muted">Coming</span></div><p class="note">Find names, emails, phones, card and ID numbers in text and documents, then redact or pseudonymize them consistently.</p></li>
+    </ul>
+  </section>
+  <section class="section" id="proof" aria-label="How to check this page"></section>
+</main>
+<footer>
+  <div class="wrap">
+    <span>Optimatech Labs LLC, Rhode Island. MIT licensed. Source and releases on GitHub.</span>
+    <span>No analytics, no cookies, no network calls.</span>
+  </div>
+</footer>
+<script src="shell/shell.js"></script>
+</body>
+</html>

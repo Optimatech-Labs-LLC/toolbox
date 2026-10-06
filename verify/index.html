@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; img-src 'self' blob: data:; font-src 'self'; connect-src blob: data:; worker-src 'self' blob:; media-src blob:; object-src 'none'; frame-src 'none'; form-action 'none'; base-uri 'none'; webrtc 'block'">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="Four checks anyone can run in five minutes to confirm that Optimatech Labs tools run in the browser and cannot send data anywhere.">
+<title>Check it yourself, Optimatech Labs Toolbox</title>
+<link rel="stylesheet" href="../shell/tool.css">
+</head>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <a class="wordmark" href="../">Optimatech Labs <span>Toolbox</span></a>
+    <nav class="nav" aria-label="Toolbox">
+      <a href="../">All tools</a>
+      <a href="./" aria-current="page">Check it yourself</a>
+      <a href="https://optimatechlabs.com/">optimatechlabs.com</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="intro">
+    <div class="stamps"><span class="stamp">Verified in the open</span></div>
+    <h1>Check it yourself.</h1>
+    <p class="lede">These tools run in your browser. We don't ask you to take that on trust. Here are four checks anyone can run in five minutes, and the limits of what they prove.</p>
+  </div>
+
+  <section class="section">
+    <h2>1. Pull the plug</h2>
+    <p class="note">Open a tool. Switch off Wi-Fi or unplug the network cable. Keep using it. It works because there is nothing to call. The page notices and says so.</p>
+  </section>
+  <section class="section">
+    <h2>2. Watch the network</h2>
+    <p class="note">Open your browser's developer tools (F12, or Option-Command-I on a Mac), choose the Network tab, then use the tool. After the page has loaded, nothing else is requested. Drop in a file and watch the list stay empty.</p>
+  </section>
+  <section class="section">
+    <h2>3. Read the policy</h2>
+    <p class="note">Every tool page carries a Content Security Policy. Your browser enforces it; our server only delivers it. Run this and look for the Content-Security-Policy line:</p>
+    <pre>curl -sI https://optimatechlabs.com/tools/evidence-hash/</pre>
+    <p class="note">The same policy is printed in the page source, in a meta tag near the top. This is what it says:</p>
+    <pre>default-src 'none'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; img-src 'self' blob: data:; font-src 'self'; connect-src blob: data:; worker-src 'self' blob:; media-src blob:; object-src 'none'; frame-src 'none'; form-action 'none'; base-uri 'none'; webrtc 'block'</pre>
+    <p class="note">What the important parts mean. <code>connect-src blob: data:</code> means the page's code cannot open a connection to any host. <code>form-action 'none'</code> means no form on the page can submit anywhere. <code>default-src 'none'</code> means the page may load nothing except what the other lines allow, which is only files from its own folder. Each tool also has a "Prove it" button that tries to send data out five different ways and shows you the browser refusing each one.</p>
+  </section>
+  <section class="section">
+    <h2>4. Read the code</h2>
+    <p class="note">Every tool is open source, MIT licensed, with a tagged release for each version. The script and stylesheet tags on each page carry integrity hashes, so the browser refuses to run a file that differs from the published one. Each tool folder contains a <code>release.txt</code> listing the SHA-256 of every file in that release. Compare it with the tag on GitHub.</p>
+  </section>
+  <section class="section">
+    <h2>What these checks do not cover</h2>
+    <p class="note">We would rather you knew the edges.</p>
+    <pre>A browser extension can read any page you open. That is yours to control.
+The policy cannot stop a page from navigating you to another site. You would see that happen, and the public code shows it does not.
+Browsers do not yet enforce the "webrtc" rule in the policy. The code is public and contains no WebRTC.
+The time on a receipt is your computer's clock, not a trusted time source. The receipt says so.</pre>
+  </section>
+  <section class="section" id="proof" aria-label="How to check this page"></section>
+</main>
+<footer>
+  <div class="wrap">
+    <span>Optimatech Labs LLC, Rhode Island. MIT licensed. Source and releases on GitHub.</span>
+    <span>No analytics, no cookies, no network calls.</span>
+  </div>
+</footer>
+<script src="../shell/shell.js"></script>
+</body>
+</html>

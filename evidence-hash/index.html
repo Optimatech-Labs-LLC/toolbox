@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; img-src 'self' blob: data:; font-src 'self'; connect-src blob: data:; worker-src 'self' blob:; media-src blob:; object-src 'none'; frame-src 'none'; form-action 'none'; base-uri 'none'; webrtc 'block'">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="Hash files of any size in your browser. SHA-256, SHA-1 and MD5, with a receipt you can attach to a report. Nothing is uploaded, and your browser enforces that.">
+<title>Evidence Hash, Optimatech Labs Toolbox</title>
+<link rel="stylesheet" href="../shell/tool.css" integrity="sha384-H76k2gq8dIIvNK3ydj5QNw9KebiAz4lJxmYZVmatWWyylI8QJnmprzonKxPF1nUu">
+</head>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <a class="wordmark" href="../">Optimatech Labs <span>Toolbox</span></a>
+    <nav class="nav" aria-label="Toolbox">
+      <a href="../">All tools</a>
+      <a href="../verify/">Check it yourself</a>
+      <a href="https://optimatechlabs.com/">optimatechlabs.com</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="intro">
+    <div class="stamps"><span class="stamp">In your browser</span><span class="stamp muted">Version 1.0.0</span><span class="stamp muted" id="selftest-stamp">Self-test pending</span></div>
+    <h1>Evidence hash</h1>
+    <p class="lede">Drop any file, any size. Get its SHA-256, and SHA-1 or MD5 if you need them, plus a receipt to attach to your report. The file is read on your computer and never leaves it.</p>
+  </div>
+
+  <section class="section" aria-labelledby="hash-heading">
+    <h2 id="hash-heading">Hash files</h2>
+    <label class="drop" id="drop" for="files">
+      <strong>Drop files here, or click to choose</strong>
+      <p>Files are read in 8 MB slices, so size does not matter. Several files at once are fine.</p>
+      <input id="files" type="file" multiple>
+    </label>
+    <div class="options">
+      <label><input type="checkbox" id="algo-sha256" checked> SHA-256</label>
+      <label><input type="checkbox" id="algo-sha1"> SHA-1</label>
+      <label><input type="checkbox" id="algo-md5"> MD5</label>
+      <label>Expected hash <input type="text" id="expected" placeholder="paste a hash to compare" autocomplete="off" spellcheck="false"></label>
+    </div>
+    <ul class="files" id="file-list"></ul>
+    <div class="actions hidden" id="actions">
+      <button class="btn" type="button" id="receipt-text">Download receipt (text)</button>
+      <button class="btn ghost" type="button" id="receipt-json">Download receipt (JSON)</button>
+      <button class="btn ghost" type="button" id="clear">Clear</button>
+    </div>
+    <p class="note" id="receipt-note">The receipt records each file's name, size, hashes and the time on your computer's clock. It says so on the receipt. Nothing about you or your browser is included.</p>
+  </section>
+
+  <section class="section" id="proof" aria-label="How to check this page"></section>
+
+  <section class="section" aria-labelledby="verify-heading">
+    <h2 id="verify-heading">Check a hash somewhere else</h2>
+    <p class="note">Any of these produce the same SHA-256 for the same file. If they differ from this page, the file changed.</p>
+    <pre>macOS or Linux:   shasum -a 256 FILE
+OpenSSL:          openssl dgst -sha256 FILE
+Windows:          certutil -hashfile FILE SHA256
+PowerShell:       Get-FileHash FILE -Algorithm SHA256</pre>
+  </section>
+</main>
+<footer>
+  <div class="wrap">
+    <span>Optimatech Labs LLC, Rhode Island. MIT licensed. Source and releases on GitHub.</span>
+    <span>No analytics, no cookies, no network calls.</span>
+  </div>
+</footer>
+<script src="../shell/shell.js" integrity="sha384-RN8BhtqTJfJS65jkwYayD18jLexA1JTL/Wsw3oM1sNNCB00995vOL3QgnFr+h2/6"></script>
+<script src="hashes.js" integrity="sha384-ZknBwtmxhz2tjM7OdQqCpsrWwgP902ES7S3gMjtH57F1eSfiwWBQPWuHARXI0hEJ"></script>
+<script src="app.js" integrity="sha384-niSMZpCWELK3+hPduVx6vCZ4I+yMd7yP2Hk/DcliWECCIst8Y3NwBcSvn8Ns+i2D"></script>
+</body>
+</html>
