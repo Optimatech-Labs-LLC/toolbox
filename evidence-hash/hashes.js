@@ -152,4 +152,4 @@
   };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   root.OptimatechHashes = api;
-})(typeof self !== 'undefined' ? self : this);
+})(typeof self !== 'undefined' ? self : (typeof globalThis !== 'undefined' ? globalThis : this));

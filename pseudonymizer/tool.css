@@ -1,0 +1,11 @@
+/* Pseudonymizer-specific layout. Copyright (c) 2026 Optimatech Labs LLC. MIT License. */
+.table-wrap{overflow-x:auto; border:1px solid var(--rule); border-radius:6px; background:var(--surface); margin-top:16px}
+table{border-collapse:collapse; width:100%; font-size:.875rem}
+th,td{padding:8px 10px; border-bottom:1px solid var(--rule); text-align:left; white-space:nowrap; max-width:28ch; overflow:hidden; text-overflow:ellipsis}
+th{font-family:var(--mono); font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); vertical-align:top}
+th label{display:flex; flex-direction:column; gap:4px; font-family:var(--body); text-transform:none; letter-spacing:0; font-size:.8125rem; color:var(--ink)}
+th label span{font-family:var(--mono); font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; color:var(--muted)}
+th label input{margin:0}
+td.changed{color:var(--accent); font-family:var(--mono); font-size:.8125rem}
+.options select{font:inherit; padding:7px 10px; border:1px solid var(--rule); border-radius:4px; background:var(--surface); color:var(--ink)}
+.options input[type=password]{font:inherit; padding:7px 10px; border:1px solid var(--rule); border-radius:4px; background:var(--surface); color:var(--ink); min-width:min(100%,28ch)}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; img-src 'self' blob: data:; font-src 'self'; connect-src blob: data:; worker-src 'self' blob:; media-src blob:; object-src 'none'; frame-src 'none'; form-action 'none'; base-uri 'none'; webrtc 'block'">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="Find names, emails, phone numbers, card and ID numbers in text and documents, then redact or pseudonymize them consistently, in your browser. Nothing is uploaded, and your browser enforces that.">
+<title>Redactor, Optimatech Labs Toolbox</title>
+<link rel="stylesheet" href="../shell/tool.css" integrity="sha384-qjPUPOXrejGbqZEjVmqJnNH5//osZ0pjL6ORFXdPpnedTNVHN7DrJxQQMTMa/qSv">
+<link rel="stylesheet" href="tool.css" integrity="sha384-y/95b8YOL4z5uk2h/jP9Cv0SqHO1+aTmKEEhR1gX9+1iIP5bMfCT3KdY8OPvKBaM">
+</head>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <a class="wordmark" href="../">Optimatech Labs <span>Toolbox</span></a>
+    <nav class="nav" aria-label="Toolbox">
+      <a href="../">All tools</a>
+      <a href="../verify/">Check it yourself</a>
+      <a href="https://optimatechlabs.com/">optimatechlabs.com</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="intro">
+    <div class="stamps"><span class="stamp">In your browser</span><span class="stamp muted">Version 1.0.0</span></div>
+    <h1>Redactor</h1>
+    <p class="lede">Paste text or drop a file. It finds emails, phone numbers, card and bank numbers, Social Security numbers, IP addresses, dates, keys, organizations and labelled names, plus any terms you add. Click a highlight to leave it alone. Then redact, or replace everything with consistent pseudonyms.</p>
+  </div>
+
+  <section class="section" aria-labelledby="red-heading">
+    <h2 id="red-heading">Text</h2>
+    <div class="two">
+      <div>
+        <label for="input" class="note">Paste here, or load a file</label>
+        <textarea id="input" class="big" spellcheck="false" placeholder="Paste text, or drop a .txt, .csv, .md, .json, .html or .docx file anywhere on this page."></textarea>
+        <div class="file-pick"><input id="file" type="file" accept=".txt,.csv,.tsv,.md,.json,.html,.htm,.docx,text/plain"><span id="file-note"></span></div>
+        <label for="terms" class="note">Your own terms, one per line (names, case numbers, addresses). Matched whole, any case.</label>
+        <textarea id="terms" class="big terms" spellcheck="false" placeholder="Jane Doe
+Acme Holdings
+CASE-2026-0417"></textarea>
+      </div>
+      <div>
+        <p class="note">What to look for</p>
+        <div class="types" id="types"></div>
+        <div class="actions"><button class="btn" type="button" id="scan">Scan</button></div>
+        <div class="counts" id="counts"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section hidden" id="review-section" aria-labelledby="rev-heading">
+    <h2 id="rev-heading">Review</h2>
+    <p class="note">Every highlight will be replaced. Click one to keep it as it is; click again to put it back.</p>
+    <div class="preview" id="preview"></div>
+    <div class="options">
+      <label><input type="radio" name="mode" value="label" checked> Replace with labels, like [EMAIL]</label>
+      <label><input type="radio" name="mode" value="block"> Replace with blocks ██████</label>
+      <label><input type="radio" name="mode" value="pseudonym"> Replace with consistent pseudonyms, like EMAIL-1, NAME-2</label>
+    </div>
+    <div class="actions">
+      <button class="btn" type="button" id="apply">Apply</button>
+      <button class="btn ghost hidden" type="button" id="download">Download result (.txt)</button>
+      <button class="btn ghost hidden" type="button" id="download-map">Download mapping (.csv)</button>
+    </div>
+    <textarea id="output" class="big hidden" spellcheck="false" readonly></textarea>
+    <p class="note" id="map-note" hidden>The mapping file lists every pseudonym next to the original value. It undoes the pseudonymization, so keep it with the original data.</p>
+  </section>
+
+  <section class="section" id="proof" aria-label="How to check this page"></section>
+
+  <section class="section" aria-labelledby="limits-heading">
+    <h2 id="limits-heading">What it can and cannot do</h2>
+    <pre>Checksummed    Card numbers (Luhn), IBANs (mod 97) and US routing numbers (ABA) are verified, so random digits are not flagged.
+Names          Found after titles and labels (Dr, Mr, Name:, Client:), by organization suffix, or from your own term list.
+               An aggressive capitalized-pairs option exists; it also catches places and titles, so review its hits.
+Documents      .docx is read as text and the result is plain text. PDF redaction with flattened pages is planned for 1.1.
+Not a model    Everything here is pattern matching you can read in the source. It is deliberate, fast and checkable,
+               and it will miss things a person would catch. Review before you send.</pre>
+  </section>
+</main>
+<footer>
+  <div class="wrap">
+    <span>Optimatech Labs LLC, Rhode Island. MIT licensed. <a href="https://github.com/Optimatech-Labs-LLC/toolbox">Source and releases on GitHub</a>.</span>
+    <span>No analytics, no cookies, no network calls.</span>
+  </div>
+</footer>
+<script src="../shell/shell.js" integrity="sha384-RN8BhtqTJfJS65jkwYayD18jLexA1JTL/Wsw3oM1sNNCB00995vOL3QgnFr+h2/6"></script>
+<script src="../shell/zipkit.js" integrity="sha384-RmjguFzw2emWIr50ApZpRa+tI4rN1QgRn8VFs/M34BbELYzBDvUMXavAOuaWhYqd"></script>
+<script src="detect.js" integrity="sha384-hzpLEFZJLY8LgPz5YA8YE9/9PIq+R3Dc5tnsew22Lhg8FLMky9gJAGM733VdXFUP"></script>
+<script src="app.js" integrity="sha384-fQcq81TmALHoUtF0cVrKgr0/irKAnxXfYKd1bMuAhU744VUtaIDu4EGJ7x1N/vUY"></script>
+</body>
+</html>

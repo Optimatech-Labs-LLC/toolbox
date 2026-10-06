@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; img-src 'self' blob: data:; font-src 'self'; connect-src blob: data:; worker-src 'self' blob:; media-src blob:; object-src 'none'; frame-src 'none'; form-action 'none'; base-uri 'none'; webrtc 'block'">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="See what is hiding inside photos, PDFs and Office files, GPS, author, revision history, and strip it in your browser. Nothing is uploaded, and your browser enforces that.">
+<title>Metadata Scrubber, Optimatech Labs Toolbox</title>
+<link rel="stylesheet" href="../shell/tool.css" integrity="sha384-qjPUPOXrejGbqZEjVmqJnNH5//osZ0pjL6ORFXdPpnedTNVHN7DrJxQQMTMa/qSv">
+</head>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <a class="wordmark" href="../">Optimatech Labs <span>Toolbox</span></a>
+    <nav class="nav" aria-label="Toolbox">
+      <a href="../">All tools</a>
+      <a href="../verify/">Check it yourself</a>
+      <a href="https://optimatechlabs.com/">optimatechlabs.com</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="intro">
+    <div class="stamps"><span class="stamp">In your browser</span><span class="stamp muted">Version 1.0.0</span></div>
+    <h1>Metadata scrubber</h1>
+    <p class="lede">Drop photos, PDFs or Office files. See what's hiding inside, GPS, camera serial numbers, author, revision history, comment authors, then download a clean copy. Nothing is re-encoded and nothing leaves your computer.</p>
+  </div>
+
+  <section class="section" aria-labelledby="scrub-heading">
+    <h2 id="scrub-heading">Inspect and clean</h2>
+    <label class="drop" id="drop" for="files">
+      <strong>Drop files here, or click to choose</strong>
+      <p>JPEG, PNG, WebP, PDF, DOCX, XLSX, PPTX. Several at once is fine.</p>
+      <input id="files" type="file" multiple>
+    </label>
+    <div class="options">
+      <label><input type="checkbox" id="opt-icc" checked> Keep color profiles (ICC)</label>
+      <label><input type="checkbox" id="opt-trailer" checked> Drop data hidden after a JPEG's end marker</label>
+      <label><input type="checkbox" id="opt-authors" checked> Replace comment and tracked-change authors in Office files</label>
+      <label><input type="checkbox" id="opt-dates"> Also clear created and modified dates in Office files</label>
+    </div>
+    <ul class="files" id="file-list"></ul>
+    <div class="actions hidden" id="actions">
+      <button class="btn" type="button" id="download-all">Download all clean copies (ZIP)</button>
+      <button class="btn ghost" type="button" id="clear">Clear</button>
+    </div>
+    <p class="note">What this does not do: it does not re-save or re-compress anything, so image quality is untouched. It cannot read metadata inside encrypted PDFs or inside compressed object streams in a PDF, and it says so when it meets one. HEIC photos are not supported yet.</p>
+  </section>
+
+  <section class="section" id="proof" aria-label="How to check this page"></section>
+
+  <section class="section" aria-labelledby="where-heading">
+    <h2 id="where-heading">Where metadata hides</h2>
+    <pre>JPEG   EXIF (camera, serial numbers, GPS, dates, thumbnail), XMP, IPTC, comments, data after the end marker
+PNG    tEXt, zTXt, iTXt chunks (software, comments, XMP), eXIf, tIME
+WebP   EXIF and XMP chunks
+PDF    Document information (author, producer, dates), XMP metadata stream
+Office docProps/core.xml and app.xml (author, company, revision), custom properties, thumbnail, comment and tracked-change authors</pre>
+  </section>
+</main>
+<footer>
+  <div class="wrap">
+    <span>Optimatech Labs LLC, Rhode Island. MIT licensed. <a href="https://github.com/Optimatech-Labs-LLC/toolbox">Source and releases on GitHub</a>.</span>
+    <span>No analytics, no cookies, no network calls.</span>
+  </div>
+</footer>
+<script src="../shell/shell.js" integrity="sha384-RN8BhtqTJfJS65jkwYayD18jLexA1JTL/Wsw3oM1sNNCB00995vOL3QgnFr+h2/6"></script>
+<script src="../shell/zipkit.js" integrity="sha384-RmjguFzw2emWIr50ApZpRa+tI4rN1QgRn8VFs/M34BbELYzBDvUMXavAOuaWhYqd"></script>
+<script src="scrub.js" integrity="sha384-XJ2RJKauFOoFL53j1eezzxbzNMC0WzU6c7fqKiNKF9SJfqBoCM5vXUhGc+WpxUa4"></script>
+<script src="app.js" integrity="sha384-JB76GuU6hjBZW+lrpP6JZwhNjm+zpKrx3J2kMBhR4JsI+avZHRwARCdlI96kjLGn"></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; img-src 'self' blob: data:; font-src 'self'; connect-src blob: data:; worker-src 'self' blob:; media-src blob:; object-src 'none'; frame-src 'none'; form-action 'none'; base-uri 'none'; webrtc 'block'">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="Replace identifying columns in a CSV with consistent pseudonyms keyed to a passphrase only you hold, in your browser. Nothing is uploaded, and your browser enforces that.">
+<title>Spreadsheet Pseudonymizer, Optimatech Labs Toolbox</title>
+<link rel="stylesheet" href="../shell/tool.css" integrity="sha384-qjPUPOXrejGbqZEjVmqJnNH5//osZ0pjL6ORFXdPpnedTNVHN7DrJxQQMTMa/qSv">
+<link rel="stylesheet" href="tool.css" integrity="sha384-7AoFZcrv//Mkiu5fYNmsJoYjEc2IhszkE4KEzDwCej4HmjMe30v8/diFxE2yvPIa">
+</head>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <a class="wordmark" href="../">Optimatech Labs <span>Toolbox</span></a>
+    <nav class="nav" aria-label="Toolbox">
+      <a href="../">All tools</a>
+      <a href="../verify/">Check it yourself</a>
+      <a href="https://optimatechlabs.com/">optimatechlabs.com</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="intro">
+    <div class="stamps"><span class="stamp">In your browser</span><span class="stamp muted">Version 1.0.0</span></div>
+    <h1>Spreadsheet pseudonymizer</h1>
+    <p class="lede">Drop a CSV. Pick the columns that identify people. Get the same data back with those values replaced by consistent pseudonyms, so the rows still join and nobody is named. The file never leaves your computer.</p>
+  </div>
+
+  <section class="section" aria-labelledby="ps-heading">
+    <h2 id="ps-heading">Load a spreadsheet</h2>
+    <label class="drop" id="drop" for="file">
+      <strong>Drop a CSV or TSV here, or click to choose</strong>
+      <p>Comma, semicolon, tab or pipe separated. The first row must be the header.</p>
+      <input id="file" type="file" accept=".csv,.tsv,.txt,text/csv,text/tab-separated-values,text/plain">
+    </label>
+    <div id="loaded" class="hidden">
+      <p class="note" id="summary"></p>
+      <div class="table-wrap"><table id="preview"></table></div>
+      <h2>Settings</h2>
+      <div class="options">
+        <label><input type="radio" name="mode" value="hmac" checked> Keyed hash (HMAC-SHA256, same input always gives the same output under the same passphrase)</label>
+        <label><input type="radio" name="mode" value="token"> Numbered tokens (NAME-0001, NAME-0002, with a key file you keep)</label>
+      </div>
+      <div class="options">
+        <label>Passphrase <input type="password" id="passphrase" autocomplete="off" placeholder="only you know this"></label>
+        <label><input type="checkbox" id="show-pass"> Show</label>
+        <label>Hash length <select id="length"><option value="8">8 characters</option><option value="16" selected>16 characters</option><option value="32">32 characters</option><option value="64">64 characters</option></select></label>
+        <label><input type="checkbox" id="fold" checked> Treat "Jane Doe", " jane doe " and "JANE DOE" as the same value</label>
+      </div>
+      <div class="actions">
+        <button class="btn" type="button" id="run">Pseudonymize</button>
+        <button class="btn ghost" type="button" id="reset">Start over</button>
+      </div>
+      <div id="result" class="hidden">
+        <h2>Result</h2>
+        <p class="note" id="result-summary"></p>
+        <div id="risk" class="verdict hidden"></div>
+        <div class="table-wrap"><table id="result-preview"></table></div>
+        <div class="actions">
+          <button class="btn" type="button" id="download">Download pseudonymized CSV</button>
+          <button class="btn ghost hidden" type="button" id="download-key">Download key file</button>
+        </div>
+        <p class="note" id="key-note" hidden>The key file maps every token back to the original value. Anyone holding it can undo the pseudonymization. Keep it where you keep the original data.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="proof" aria-label="How to check this page"></section>
+
+  <section class="section" aria-labelledby="how-heading">
+    <h2 id="how-heading">How the two modes differ</h2>
+    <pre>Keyed hash   HMAC-SHA256 over the value with a key derived from your passphrase (PBKDF2, 100,000 rounds).
+             Same passphrase on a different file gives the same pseudonyms, so files can still be joined.
+             Without the passphrase the pseudonyms cannot be reversed. There is no key file to lose.
+Tokens       Values become NAME-0001, NAME-0002 in order of first appearance. Readable, but only
+             consistent within one run, and reversible by anyone holding the key file.
+Risk check   Columns you did not pseudonymize can still single people out together (postcode plus
+             date of birth plus sex is the classic case). The tool counts rows that are unique on
+             the remaining columns and warns you. It is a warning light, not a guarantee.</pre>
+  </section>
+</main>
+<footer>
+  <div class="wrap">
+    <span>Optimatech Labs LLC, Rhode Island. MIT licensed. <a href="https://github.com/Optimatech-Labs-LLC/toolbox">Source and releases on GitHub</a>.</span>
+    <span>No analytics, no cookies, no network calls.</span>
+  </div>
+</footer>
+<script src="../shell/shell.js" integrity="sha384-RN8BhtqTJfJS65jkwYayD18jLexA1JTL/Wsw3oM1sNNCB00995vOL3QgnFr+h2/6"></script>
+<script src="csv.js" integrity="sha384-ESuLTlxExriVUZNuX/+GvJQxXfk/DnP18K8qXujQmb8agK7qqUgK2RzJtIR7fpfn"></script>
+<script src="app.js" integrity="sha384-/RlTvT7KV8AktwSZR8QLVBcnES8FoihaZACqGUbpFQ77bPMh2i5EyCyTlhVQ2q/I"></script>
+</body>
+</html>

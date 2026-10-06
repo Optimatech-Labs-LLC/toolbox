@@ -1,12 +1,12 @@
-Optimatech Labs Toolbox: evidence-hash 1.0.1
+Optimatech Labs Toolbox: pseudonymizer 1.0.0
 Built 2026-10-06 14:47 UTC
 
 SHA-256 of every file in this release:
 
-31f1f3eaaadcefef0c5446cd77fed424f83183446813b081d66abe42bbc061c5  evidence-hash/index.html
-3097a3dca3a06a12a0e4d5a13b8897e3e22097b5b3273760e428bebd41276863  evidence-hash/app.js
-781e6d68a1d6fd3209d49a687c07bbc257858852b6d542b4ebef03d2ca2c17f2  evidence-hash/hashes.js
-90c0c6887bcc907c289e1354dffca60fbc2a76e9100f73ea5963e4c9d0a88e19  evidence-hash/worker.js
+3abf9b3a71c4cab01ef04e9c00448b11a911f0235a6aa7a9ca494214967e73d1  pseudonymizer/index.html
+37fb4b1affac31923d6cb09f658c508a6f6e03ff37d25f2665b6fc72d7a72da7  pseudonymizer/app.js
+131586779b1019d81e21a37b46cfa09024c818d535b9f743d6f42ca4dcdd79a5  pseudonymizer/csv.js
+47dd9380fae0acc9a1bec3b915a152d0e7f92b5fb52fc135948ae611d1c99a0c  pseudonymizer/tool.css
 8d7a13420c884bb0ee6d6618f9f6c59df956b3fd60d72bd227da2478a09347ac  shell/shell.js
 f0c04c2dda224ac932c3b7792733cc3fa398c7454d865578425020f6dbf96438  shell/tool.css
 4b35971bd12449d5c26ef7fced0e23497f8688b4f7696e995b24ba3519eefc21  shell/apache-tools.conf

@@ -1,14 +1,14 @@
-Optimatech Labs Toolbox: evidence-hash 1.0.1
+Optimatech Labs Toolbox: metadata-scrubber 1.0.0
 Built 2026-10-06 14:47 UTC
 
 SHA-256 of every file in this release:
 
-31f1f3eaaadcefef0c5446cd77fed424f83183446813b081d66abe42bbc061c5  evidence-hash/index.html
-3097a3dca3a06a12a0e4d5a13b8897e3e22097b5b3273760e428bebd41276863  evidence-hash/app.js
-781e6d68a1d6fd3209d49a687c07bbc257858852b6d542b4ebef03d2ca2c17f2  evidence-hash/hashes.js
-90c0c6887bcc907c289e1354dffca60fbc2a76e9100f73ea5963e4c9d0a88e19  evidence-hash/worker.js
+cafdb215191e3e841b20db5aaf5590659e9b264c23d5c8ef758c59ee48496a36  metadata-scrubber/index.html
+04c6233ada44183e606eb901b0888223446e13959bc4554e687401e140463b10  metadata-scrubber/app.js
+f37f52b61cd8bb9a6c978cb789ec9b6bf768d372955121828d66c50c96df68a8  metadata-scrubber/scrub.js
 8d7a13420c884bb0ee6d6618f9f6c59df956b3fd60d72bd227da2478a09347ac  shell/shell.js
 f0c04c2dda224ac932c3b7792733cc3fa398c7454d865578425020f6dbf96438  shell/tool.css
+e5c768f05fe9c5c94066ede9d74017ba9dd893103181660431903723fceb80f0  shell/zipkit.js
 4b35971bd12449d5c26ef7fced0e23497f8688b4f7696e995b24ba3519eefc21  shell/apache-tools.conf
 7e6b2818edbd8f6a01ae80641cc8f16a51080d08fb4e532be3a0b6f74adb07da  shell/fonts/OFL-IBMPlexMono.txt
 240b385d3ec8c8d5c1d4af2bbba6ac72bac0309a80c1a8ff112c168643cc6811  shell/fonts/OFL-ZillaSlab.txt
@@ -16,4 +16,3 @@ a76f53ca6612e7b3828eec2311098675b7f9849ae4169a8bcef6302aec02a6c0  shell/fonts/ib
 afeeae1f7ce9f9a419c958fea3f99e86e268ab8b5d9ed50c0bcc9cfaf21f1c50  shell/fonts/zilla-slab-600.woff2
 6d5ec30c781ce44aef71e9ea386f861a6a74db5dc162fbbc126fb522519c38a3  shell/fonts/zilla-slab-700.woff2
 3b1c4131b849078bfee50cf1c6672fb8e788efaf0a50785ed48ea7ace37de1d6  shell/tools.htaccess
-e5c768f05fe9c5c94066ede9d74017ba9dd893103181660431903723fceb80f0  shell/zipkit.js
