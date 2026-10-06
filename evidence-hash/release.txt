@@ -1,11 +1,18 @@
 Optimatech Labs Toolbox: evidence-hash 1.0.0
-Built 2026-10-06 14:12 UTC
+Built 2026-10-06 14:18 UTC
 
 SHA-256 of every file in this release:
 
-2d73b889515f9f01a3d9accda62553e38ea20e9cc655099fb4b28fb084d23c63  evidence-hash/index.html
+3542fa1d071241ccc5e9c710fcb021f53842cbec604f175636bcab512d2fe901  evidence-hash/index.html
 3097a3dca3a06a12a0e4d5a13b8897e3e22097b5b3273760e428bebd41276863  evidence-hash/app.js
 0e61c21a5adb1274d91754c5b489822dfe2e98676d522f61a3d17c5105a4e655  evidence-hash/hashes.js
 90c0c6887bcc907c289e1354dffca60fbc2a76e9100f73ea5963e4c9d0a88e19  evidence-hash/worker.js
 8d7a13420c884bb0ee6d6618f9f6c59df956b3fd60d72bd227da2478a09347ac  shell/shell.js
-46539c5191ad89c3e6fd3877568dd607a2bb330239b51ba75bbac79ab8021d2c  shell/tool.css
+f0c04c2dda224ac932c3b7792733cc3fa398c7454d865578425020f6dbf96438  shell/tool.css
+4b35971bd12449d5c26ef7fced0e23497f8688b4f7696e995b24ba3519eefc21  shell/apache-tools.conf
+7e6b2818edbd8f6a01ae80641cc8f16a51080d08fb4e532be3a0b6f74adb07da  shell/fonts/OFL-IBMPlexMono.txt
+240b385d3ec8c8d5c1d4af2bbba6ac72bac0309a80c1a8ff112c168643cc6811  shell/fonts/OFL-ZillaSlab.txt
+a76f53ca6612e7b3828eec2311098675b7f9849ae4169a8bcef6302aec02a6c0  shell/fonts/ibm-plex-mono-500.woff2
+afeeae1f7ce9f9a419c958fea3f99e86e268ab8b5d9ed50c0bcc9cfaf21f1c50  shell/fonts/zilla-slab-600.woff2
+6d5ec30c781ce44aef71e9ea386f861a6a74db5dc162fbbc126fb522519c38a3  shell/fonts/zilla-slab-700.woff2
+3b1c4131b849078bfee50cf1c6672fb8e788efaf0a50785ed48ea7ace37de1d6  shell/tools.htaccess

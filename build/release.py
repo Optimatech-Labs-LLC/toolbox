@@ -38,8 +38,11 @@ def main(tool, version):
     lines = [f'Optimatech Labs Toolbox: {tool} {version}', f'Built {stamp}', '', 'SHA-256 of every file in this release:', '']
     # Every file that ships with the tool, not only the ones the page links: workers are loaded by script.
     shipped = [os.path.join(folder, n) for n in sorted(os.listdir(folder)) if n not in ('release.txt', 'VERSION') and os.path.isfile(os.path.join(folder, n))]
+    # The shell ships with every tool: stylesheet, script, fonts and their licenses.
+    shell_dir = os.path.join(ROOT, 'shell')
+    shell_files = sorted(os.path.join(dp, f) for dp, _, fs in os.walk(shell_dir) for f in fs if not f.startswith('.'))
     files = []
-    for p in [index] + shipped + sorted(set(referenced)):
+    for p in [index] + shipped + sorted(set(referenced)) + shell_files:
         if p not in files:
             files.append(p)
     for p in files:
