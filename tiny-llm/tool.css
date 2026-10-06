@@ -1,0 +1,30 @@
+/* Tiny LLM page styles. Copyright (c) 2026 Optimatech Labs LLC. MIT License. */
+.text{width:100%; min-height:170px; font:inherit; font-size:.9375rem; line-height:1.5; padding:12px 14px; border:1px solid var(--rule); border-radius:4px; background:var(--surface); color:var(--ink); resize:vertical}
+.text-stats{display:flex; flex-wrap:wrap; gap:8px 18px; margin-top:10px; color:var(--muted); font-size:.9375rem}
+.text-stats .warn{color:var(--bad)}
+.knobs{display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:16px 22px}
+.knob{display:flex; flex-direction:column; gap:5px; font-size:.9375rem; font-weight:600}
+.knob .help{color:var(--muted); font-size:.8125rem; font-weight:400}
+.knob input[type=number],.knob select,.gen input[type=text],.gen input[type=number]{font:inherit; font-family:var(--mono); font-size:.875rem; padding:7px 10px; border:1px solid var(--rule); border-radius:4px; background:var(--surface); color:var(--ink); width:100%}
+.checks{display:flex; flex-wrap:wrap; gap:10px 22px; margin-top:14px; font-size:.9375rem}
+.checks label{display:inline-flex; align-items:center; gap:7px}
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:12px 18px; margin:18px 0}
+.stat b{display:block; font-family:var(--mono); font-size:1.15rem; font-weight:500}
+.stat span{color:var(--muted); font-size:.75rem; text-transform:uppercase; letter-spacing:.08em}
+.chart{width:100%; height:210px; border:1px solid var(--rule); border-radius:4px; background:var(--surface); display:block}
+.chart-key{display:flex; flex-wrap:wrap; gap:6px 18px; margin-top:8px; color:var(--muted); font-size:.8125rem}
+.chart-key i{display:inline-block; width:18px; height:0; border-top:2px solid var(--accent); vertical-align:middle; margin-right:6px}
+.chart-key i.held{border-top-style:dashed; border-top-color:var(--bad)}
+.sample{min-height:3.4em; margin-top:14px}
+.sample-label{margin-top:16px; font-size:.8125rem; color:var(--muted); text-transform:uppercase; letter-spacing:.08em}
+.status{margin-top:12px; font-size:.9375rem; min-height:1.5em}
+.status.bad{color:var(--bad); font-weight:600}
+.status.ok{color:var(--ok); font-weight:600}
+.gen{display:grid; grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr); gap:12px 18px; align-items:end; font-size:.9375rem; font-weight:600}
+.gen label{display:flex; flex-direction:column; gap:5px}
+.gen input[type=range]{width:100%}
+.output{min-height:6em; margin-top:14px; font-size:.9375rem}
+.explain{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px 28px}
+.explain h3{font-size:1.05rem; margin-bottom:6px}
+.explain p{color:var(--muted); font-size:.9375rem}
+@media (max-width:640px){ .gen{grid-template-columns:1fr} }

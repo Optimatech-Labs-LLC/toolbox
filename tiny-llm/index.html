@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; img-src 'self' blob: data:; font-src 'self'; connect-src blob: data:; worker-src 'self' blob:; media-src blob:; object-src 'none'; frame-src 'none'; form-action 'none'; base-uri 'none'; webrtc 'block'">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="Paste a paragraph, train a small transformer language model on it in your browser, and watch it learn to write. Nothing is downloaded and nothing is sent.">
+<title>Tiny LLM, Optimatech Labs Toolbox</title>
+<link rel="stylesheet" href="../shell/tool.css" integrity="sha384-qjPUPOXrejGbqZEjVmqJnNH5//osZ0pjL6ORFXdPpnedTNVHN7DrJxQQMTMa/qSv">
+<link rel="stylesheet" href="tool.css" integrity="sha384-ag+J0k+lboo6otW5ZEsepJx4LsagmPBW20azjvUguH3nL4fwSuEmxgRKalecbWKM">
+</head>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <a class="wordmark" href="../">Optimatech Labs <span>Toolbox</span></a>
+    <nav class="nav" aria-label="Toolbox">
+      <a href="../">All tools</a>
+      <a href="../verify/">Check it yourself</a>
+      <a href="https://optimatechlabs.com/">optimatechlabs.com</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="intro">
+    <div class="stamps"><span class="stamp">In your browser</span><span class="stamp muted">Version 1.0.0</span><span class="stamp muted" id="selftest-stamp">Self-test pending</span></div>
+    <h1>Tiny LLM</h1>
+    <p class="lede">Paste a paragraph. Train a small transformer on it and watch it learn to write, one character at a time. The whole model, training and all, runs in your browser. Nothing is downloaded and nothing is sent.</p>
+  </div>
+
+  <section class="section" aria-labelledby="read-heading">
+    <h2 id="read-heading">1. Give it something to read</h2>
+    <textarea class="text" id="text" spellcheck="false" aria-label="Training text"></textarea>
+    <div class="text-stats" id="text-stats"></div>
+    <div class="actions">
+      <button class="btn ghost small" type="button" id="use-sample">Use the sample paragraph</button>
+      <button class="btn ghost small" type="button" id="clear-text">Clear</button>
+    </div>
+    <p class="note">The model learns only from what is in this box. A paragraph gives you a model that can quote the paragraph. A few pages give you one that starts to sound like the author. More text means a longer wait.</p>
+  </section>
+
+  <section class="section" aria-labelledby="shape-heading">
+    <h2 id="shape-heading">2. Shape the model</h2>
+    <div class="knobs">
+      <label class="knob">Context <input type="number" id="context" min="2" max="32" step="1" value="8"><span class="help">How many characters it can look back on.</span></label>
+      <label class="knob">Width <select id="dim"><option>8</option><option>16</option><option>24</option><option selected>32</option><option>48</option><option>64</option></select><span class="help">Size of every vector inside. Bigger learns more, slower.</span></label>
+      <label class="knob">Epochs <input type="number" id="epochs" min="1" max="20000" step="1" value="500"><span class="help">Passes over the text. About a minute at 500 on a laptop. Stop any time.</span></label>
+      <label class="knob">Learning rate <select id="lr"><option>0.003</option><option>0.01</option><option>0.03</option><option>0.05</option><option>0.1</option><option selected>0.2</option><option>0.3</option><option>1</option><option>3</option></select><span class="help">Step size. Too high and the numbers blow up.</span></label>
+      <label class="knob">Seed <input type="number" id="seed" min="0" max="999999" step="1" value="42"><span class="help">Same seed, same text, same settings: same run.</span></label>
+    </div>
+    <div class="checks">
+      <label><input type="checkbox" id="clip" checked> Clip gradients (the standard cure for blow-ups; turn it off to see one)</label>
+      <label><input type="checkbox" id="holdout"> Keep the last 10% of the text aside to measure how much it is memorizing</label>
+    </div>
+    <p class="note" id="shape-note"></p>
+  </section>
+
+  <section class="section" aria-labelledby="train-heading">
+    <h2 id="train-heading">3. Train it</h2>
+    <div class="actions">
+      <button class="btn" type="button" id="train">Train</button>
+      <button class="btn ghost" type="button" id="stop" disabled>Stop</button>
+    </div>
+    <p class="status" id="status">Ready. Training starts the moment you press the button and runs on this computer only.</p>
+    <div class="progress" aria-hidden="true"><i id="bar"></i></div>
+    <dl class="stats">
+      <div class="stat"><b id="st-params">0</b><span>Parameters</span></div>
+      <div class="stat"><b id="st-epoch">0</b><span>Epoch</span></div>
+      <div class="stat"><b id="st-loss">&#8211;</b><span>Loss</span></div>
+      <div class="stat"><b id="st-held">&#8211;</b><span>Held-out loss</span></div>
+      <div class="stat"><b id="st-time">0 s</b><span>Time</span></div>
+      <div class="stat"><b id="st-speed">&#8211;</b><span>Epochs per second</span></div>
+    </dl>
+    <canvas class="chart" id="chart" role="img" aria-label="Loss per epoch"></canvas>
+    <div class="chart-key"><span><i></i>Training loss</span><span id="key-held" class="hidden"><i class="held"></i>Held-out loss</span><span>Lower is better. A fresh model sits near the top line.</span></div>
+    <p class="sample-label">What it writes right now</p>
+    <pre class="sample" id="sample">Nothing yet.</pre>
+  </section>
+
+  <section class="section" aria-labelledby="write-heading">
+    <h2 id="write-heading">4. Make it write</h2>
+    <div class="gen">
+      <label>Start from <input type="text" id="seed-text" value="It does not think" autocomplete="off" spellcheck="false"></label>
+      <label>Characters <input type="number" id="length" min="1" max="2000" step="1" value="200"></label>
+      <label>Temperature <span class="mono" id="temp-value">0.8</span> <input type="range" id="temperature" min="0.2" max="1.5" step="0.1" value="0.8"></label>
+    </div>
+    <div class="actions">
+      <button class="btn" type="button" id="generate" disabled>Generate</button>
+      <button class="btn ghost" type="button" id="copy" disabled>Copy</button>
+      <button class="btn ghost" type="button" id="download" disabled>Download weights (JSON)</button>
+      <label class="btn ghost" for="load">Load weights<input type="file" id="load" accept="application/json,.json" class="hidden"></label>
+    </div>
+    <pre class="output" id="output">Train a model, or load a weights file, and the output appears here.</pre>
+    <p class="note">Low temperature plays it safe and repeats what it knows. High temperature takes chances and makes more mistakes. The weights file holds the whole model: every number it learned, plus the settings used to train it.</p>
+  </section>
+
+  <section class="section" aria-labelledby="explain-heading">
+    <h2 id="explain-heading">What you are looking at</h2>
+    <div class="explain">
+      <div><h3>Loss</h3><p>How surprised the model is by the real next character, averaged over the text. A fresh model is as surprised as a fair die with one side per character. As it learns, the number falls.</p></div>
+      <div><h3>Why gibberish at first</h3><p>It starts with random numbers. The first thing it picks up is which characters are common. Then pairs. Then the shape of words. Real words climb out after a few hundred passes.</p></div>
+      <div><h3>Why it quotes the paragraph</h3><p>With one paragraph there is nothing else to learn. Tick the held-out box and you will see the held-out loss stop falling while the training loss keeps going. That is memorizing, not understanding. More text is the only fix.</p></div>
+      <div><h3>Blow it up on purpose</h3><p>Untick clipping, set the learning rate to 3, and train. Within a few seconds the loss turns into "not a number" and the weights are ruined. Every lab deals with this. Clipping is the standard cure, and it has limits: at that rate it stops the crash but the model learns nothing.</p></div>
+      <div><h3>The same code, in Python</h3><p>This page is a port of <a href="https://github.com/Optimatech-Labs-LLC/feel-smart-llm">feel-smart-llm</a>, one file of numpy with the backward pass written by hand and a gradient check you can run. Read it in one sitting.</p></div>
+      <div><h3>What is missing</h3><p>Real models stack dozens of these blocks, use several attention heads, normalize between layers, work on word pieces instead of characters and read terabytes. The math in each block is the same as here.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="proof" aria-label="How to check this page"></section>
+</main>
+<footer>
+  <div class="wrap">
+    <span>Optimatech Labs LLC, Rhode Island. MIT licensed. <a href="https://github.com/Optimatech-Labs-LLC/toolbox">Source and releases on GitHub</a>.</span>
+    <span>No analytics, no cookies, no network calls.</span>
+  </div>
+</footer>
+<script src="../shell/shell.js" integrity="sha384-RN8BhtqTJfJS65jkwYayD18jLexA1JTL/Wsw3oM1sNNCB00995vOL3QgnFr+h2/6"></script>
+<script src="model.js" integrity="sha384-w4VmQQ6croRpOy1bppyXIE5Ft18xRRDhI3lNko7LN9+D/PrN/OoXGxx6v8JR9H1+"></script>
+<script src="app.js" integrity="sha384-mfczXXNxAPnVI3ztoTz/J7AjeI9ym5n9ZBuqw878OHBRCEtuoAb625NGPpSoBTaq"></script>
+</body>
+</html>

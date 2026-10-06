@@ -1,0 +1,20 @@
+Optimatech Labs Toolbox: tiny-llm 1.0.0
+Built 2026-10-06 23:50 UTC
+
+SHA-256 of every file in this release:
+
+3d1f0e01c2097817f5cb3882cc9d6b06efb8c77a343eebad90504d19384d5477  tiny-llm/index.html
+4ba784f77831b51907eccb206c247ff7be4d30cc97b26dccb17bcfd5b490045e  tiny-llm/app.js
+027a0d731db96b8fd84cd5f801abd8c9a7d01e27f13a21dd70d6998b241aa97d  tiny-llm/model.js
+3ab57d979761d4b233ac2d60c0cf4ac9b53366050ef2007f51b287ade5814e49  tiny-llm/tool.css
+afc432ef6f283b577f82a539782fd40b488634cf712679ce0f7ee7612a3c6b36  tiny-llm/worker.js
+8d7a13420c884bb0ee6d6618f9f6c59df956b3fd60d72bd227da2478a09347ac  shell/shell.js
+f0c04c2dda224ac932c3b7792733cc3fa398c7454d865578425020f6dbf96438  shell/tool.css
+4b35971bd12449d5c26ef7fced0e23497f8688b4f7696e995b24ba3519eefc21  shell/apache-tools.conf
+7e6b2818edbd8f6a01ae80641cc8f16a51080d08fb4e532be3a0b6f74adb07da  shell/fonts/OFL-IBMPlexMono.txt
+240b385d3ec8c8d5c1d4af2bbba6ac72bac0309a80c1a8ff112c168643cc6811  shell/fonts/OFL-ZillaSlab.txt
+a76f53ca6612e7b3828eec2311098675b7f9849ae4169a8bcef6302aec02a6c0  shell/fonts/ibm-plex-mono-500.woff2
+afeeae1f7ce9f9a419c958fea3f99e86e268ab8b5d9ed50c0bcc9cfaf21f1c50  shell/fonts/zilla-slab-600.woff2
+6d5ec30c781ce44aef71e9ea386f861a6a74db5dc162fbbc126fb522519c38a3  shell/fonts/zilla-slab-700.woff2
+3b1c4131b849078bfee50cf1c6672fb8e788efaf0a50785ed48ea7ace37de1d6  shell/tools.htaccess
+e5c768f05fe9c5c94066ede9d74017ba9dd893103181660431903723fceb80f0  shell/zipkit.js

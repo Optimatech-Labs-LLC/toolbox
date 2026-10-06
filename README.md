@@ -12,6 +12,7 @@ Live at https://optimatechlabs.com/tools/ . Source: https://github.com/Optimatec
 | [Metadata scrubber](metadata-scrubber/) | See and strip hidden metadata in JPEG, PNG, WebP, PDF, DOCX, XLSX and PPTX files without re-encoding | 1.0.0 |
 | [Spreadsheet pseudonymizer](pseudonymizer/) | Replace identifying columns in a CSV with consistent pseudonyms keyed to your passphrase, with a re-identification warning | 1.0.0 |
 | [Redactor](redactor/) | Find and redact or pseudonymize personal data in text and .docx, with checksum-verified card, IBAN and routing numbers | 1.0.0 |
+| [Tiny LLM](tiny-llm/) | Train a small character-level transformer on your own text in a browser worker, watch the loss fall, generate text, save the weights. A port of [feel-smart-llm](https://github.com/Optimatech-Labs-LLC/feel-smart-llm) | 1.0.0 |
 
 ## How the "runs in your browser" claim is enforced
 
@@ -33,7 +34,7 @@ See [verify/](verify/) for the "Check it yourself" page.
 
 - No network calls, no third-party scripts, no CDN, no web fonts, no analytics, no cookies.
 - No inline scripts or styles; the policy forbids them. All code lives in `.js` and `.css` files.
-- Plain files, no build step beyond `build/release.py`, which computes integrity hashes and writes `release.txt`. Tests in `test/` run with Node and compare against OpenSSL and zlib: `node test/hash_test.js`, `node test/zipkit_test.js`, `node test/scrub_test.js`, `node test/detect_test.js`. Every tool page also runs an automated check when opened with `?selftest=1`.
+- Plain files, no build step beyond `build/release.py`, which computes integrity hashes and writes `release.txt`. Tests in `test/` run with Node and compare against OpenSSL and zlib: `node test/hash_test.js`, `node test/zipkit_test.js`, `node test/scrub_test.js`, `node test/detect_test.js`, `node test/llm_test.js`. Every tool page also runs an automated check when opened with `?selftest=1`.
 - Shared layout and the proof panel come from `shell/`.
 
 ## Deploying
