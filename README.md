@@ -16,7 +16,7 @@ Live at https://optimatechlabs.com/tools/ . Source: https://github.com/Optimatec
 
 ## How the "runs in your browser" claim is enforced
 
-Every tool page carries this Content Security Policy, sent as a header by the web server and repeated in a `<meta>` tag in the page source:
+Every tool page carries this Content Security Policy in a `<meta>` tag in the page source, where the browser enforces it. A server with `mod_headers` can also send it as a header (see Deploying); optimatechlabs.com currently serves it in the page only, so the header-only directive `frame-ancestors` does not apply there:
 
 ```text
 default-src 'none'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; img-src 'self' blob: data:; font-src 'self'; connect-src blob: data:; worker-src 'self' blob:; media-src blob:; object-src 'none'; frame-src 'none'; form-action 'none'; base-uri 'none'; frame-ancestors 'none'; webrtc 'block'
@@ -39,7 +39,7 @@ See [verify/](verify/) for the "Check it yourself" page.
 
 ## Deploying
 
-Copy a tool folder and `shell/` to the `tools/` directory of the site. Apache needs `mod_headers` for `shell/tools.htaccess` (rename to `.htaccess` in `tools/`), or use `shell/apache-tools.conf` inside the virtual host. Then check from outside:
+Copy a tool folder and `shell/` to the `tools/` directory of the site. The policy in each page works on its own. To also send it as a header, Apache needs `mod_headers` and either `shell/tools.htaccess` (renamed to `.htaccess` in `tools/`, with AllowOverride) or `shell/apache-tools.conf` inside the virtual host. Then check from outside:
 
 ```bash
 curl -sI https://optimatechlabs.com/tools/evidence-hash/ | grep -i content-security-policy

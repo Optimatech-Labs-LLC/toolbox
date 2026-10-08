@@ -37,9 +37,7 @@
   </section>
   <section class="section">
     <h2>3. Read the policy</h2>
-    <p class="note">Every tool page carries a Content Security Policy. Your browser enforces it; our server only delivers it. Run this and look for the Content-Security-Policy line:</p>
-    <pre>curl -sI https://optimatechlabs.com/tools/evidence-hash/</pre>
-    <p class="note">The same policy is printed in the page source, in a meta tag near the top. This is what it says:</p>
+    <p class="note">Every tool page carries a Content Security Policy in its own source. Your browser enforces it, not our server. Open any tool, view the page source (Option-Command-U on a Mac, Ctrl-U elsewhere) and find the Content-Security-Policy line in a meta tag near the top. This is what it says:</p>
     <pre>default-src 'none'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; img-src 'self' blob: data:; font-src 'self'; connect-src blob: data:; worker-src 'self' blob:; media-src blob:; object-src 'none'; frame-src 'none'; form-action 'none'; base-uri 'none'; webrtc 'block'</pre>
     <p class="note">What the important parts mean. <code>connect-src blob: data:</code> means the page's code cannot open a connection to any host. <code>form-action 'none'</code> means no form on the page can submit anywhere. <code>default-src 'none'</code> means the page may load nothing except what the other lines allow, which is only files from its own folder. Each tool also has a "Prove it" button that tries to send data out five different ways and shows you the browser refusing each one.</p>
   </section>
@@ -53,6 +51,7 @@
     <pre>A browser extension can read any page you open. That is yours to control.
 The policy cannot stop a page from navigating you to another site. You would see that happen, and the public code shows it does not.
 Browsers do not yet enforce the "webrtc" rule in the policy. The code is public and contains no WebRTC.
+A policy carried in the page cannot stop another site from showing a tool inside a frame on its own page. Use the tools at optimatechlabs.com and check the address bar.
 The time on a receipt is your computer's clock, not a trusted time source. The receipt says so.</pre>
   </section>
   <section class="section" id="proof" aria-label="How to check this page"></section>
