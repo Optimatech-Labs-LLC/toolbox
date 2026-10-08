@@ -1,9 +1,9 @@
-Optimatech Labs Toolbox: pseudonymizer 1.0.0
-Built 2026-10-06 14:47 UTC
+OptimaTech Labs Toolbox: pseudonymizer 1.0.1
+Built 2026-10-08 03:56 UTC
 
 SHA-256 of every file in this release:
 
-3abf9b3a71c4cab01ef04e9c00448b11a911f0235a6aa7a9ca494214967e73d1  pseudonymizer/index.html
+957c4fc3b697ae131f04976ef8473b39c505258a0eb83b91d500a0f02b326bc5  pseudonymizer/index.html
 37fb4b1affac31923d6cb09f658c508a6f6e03ff37d25f2665b6fc72d7a72da7  pseudonymizer/app.js
 131586779b1019d81e21a37b46cfa09024c818d535b9f743d6f42ca4dcdd79a5  pseudonymizer/csv.js
 47dd9380fae0acc9a1bec3b915a152d0e7f92b5fb52fc135948ae611d1c99a0c  pseudonymizer/tool.css

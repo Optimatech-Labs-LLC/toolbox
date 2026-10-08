@@ -1,9 +1,9 @@
-Optimatech Labs Toolbox: metadata-scrubber 1.0.0
-Built 2026-10-06 14:47 UTC
+OptimaTech Labs Toolbox: metadata-scrubber 1.0.1
+Built 2026-10-08 03:56 UTC
 
 SHA-256 of every file in this release:
 
-cafdb215191e3e841b20db5aaf5590659e9b264c23d5c8ef758c59ee48496a36  metadata-scrubber/index.html
+4c1d6a1080842bd87c64f9eee0138f59cd5b5cae7c37e2b2f42bafcc2cb95a05  metadata-scrubber/index.html
 04c6233ada44183e606eb901b0888223446e13959bc4554e687401e140463b10  metadata-scrubber/app.js
 f37f52b61cd8bb9a6c978cb789ec9b6bf768d372955121828d66c50c96df68a8  metadata-scrubber/scrub.js
 8d7a13420c884bb0ee6d6618f9f6c59df956b3fd60d72bd227da2478a09347ac  shell/shell.js

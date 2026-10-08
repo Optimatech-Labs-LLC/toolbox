@@ -35,7 +35,7 @@ def main(tool, version):
     out = re.sub(r'<(script|link)\b([^>]*?)\s(src|href)="([^"]+)"([^>]*)', fix, src)
     open(index, 'w', encoding='utf-8').write(out)
     stamp = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%d %H:%M UTC')
-    lines = [f'Optimatech Labs Toolbox: {tool} {version}', f'Built {stamp}', '', 'SHA-256 of every file in this release:', '']
+    lines = [f'OptimaTech Labs Toolbox: {tool} {version}', f'Built {stamp}', '', 'SHA-256 of every file in this release:', '']
     # Every file that ships with the tool, not only the ones the page links: workers are loaded by script.
     shipped = [os.path.join(folder, n) for n in sorted(os.listdir(folder)) if n not in ('release.txt', 'VERSION') and os.path.isfile(os.path.join(folder, n))]
     # The shell ships with every tool: stylesheet, script, fonts and their licenses.

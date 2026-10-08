@@ -1,9 +1,9 @@
-Optimatech Labs Toolbox: tiny-llm 1.0.0
-Built 2026-10-06 23:50 UTC
+OptimaTech Labs Toolbox: tiny-llm 1.0.1
+Built 2026-10-08 03:56 UTC
 
 SHA-256 of every file in this release:
 
-3d1f0e01c2097817f5cb3882cc9d6b06efb8c77a343eebad90504d19384d5477  tiny-llm/index.html
+2f5fa9a26d18d561de8ac1353c671673793bcaf199085e54aefd1ec8627005e2  tiny-llm/index.html
 4ba784f77831b51907eccb206c247ff7be4d30cc97b26dccb17bcfd5b490045e  tiny-llm/app.js
 027a0d731db96b8fd84cd5f801abd8c9a7d01e27f13a21dd70d6998b241aa97d  tiny-llm/model.js
 3ab57d979761d4b233ac2d60c0cf4ac9b53366050ef2007f51b287ade5814e49  tiny-llm/tool.css

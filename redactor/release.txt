@@ -1,9 +1,9 @@
-Optimatech Labs Toolbox: redactor 1.0.0
-Built 2026-10-06 14:47 UTC
+OptimaTech Labs Toolbox: redactor 1.0.1
+Built 2026-10-08 03:56 UTC
 
 SHA-256 of every file in this release:
 
-189bd333c614e9175525589c679c6418d04371a6d28084aabc0dc4a88175df5a  redactor/index.html
+026582d3d1e417b17bdeb9bee041d52185e99a18521600037e0364f0c5af2b47  redactor/index.html
 ff5c317c55bf598c513d15fc50b7e875d06d844cd47ed7160077d4e2977b43d9  redactor/app.js
 aa06873fc7d74789b715d16887dfdc027a2c65a1ca75af19c182714ed76597cd  redactor/detect.js
 60cc08208fd4bba081538241ff4fe8b31a0c4885c6f1e3ead4eea7c3d5f688d2  redactor/tool.css

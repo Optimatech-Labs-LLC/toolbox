@@ -1,9 +1,9 @@
-Optimatech Labs Toolbox: evidence-hash 1.0.1
-Built 2026-10-06 14:47 UTC
+OptimaTech Labs Toolbox: evidence-hash 1.0.2
+Built 2026-10-08 03:56 UTC
 
 SHA-256 of every file in this release:
 
-31f1f3eaaadcefef0c5446cd77fed424f83183446813b081d66abe42bbc061c5  evidence-hash/index.html
+c492e7e50e5aca118c9a1131b078921138e3bc397fe3866aedaa5f9e6e0fe407  evidence-hash/index.html
 3097a3dca3a06a12a0e4d5a13b8897e3e22097b5b3273760e428bebd41276863  evidence-hash/app.js
 781e6d68a1d6fd3209d49a687c07bbc257858852b6d542b4ebef03d2ca2c17f2  evidence-hash/hashes.js
 90c0c6887bcc907c289e1354dffca60fbc2a76e9100f73ea5963e4c9d0a88e19  evidence-hash/worker.js
